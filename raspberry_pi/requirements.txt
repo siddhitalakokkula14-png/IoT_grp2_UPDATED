@@ -1,0 +1,5 @@
+Flask>=3.0,<4
+flask-cors>=4.0,<7
+twilio>=9.0,<10
+adafruit-circuitpython-ads1x15>=2.2,<3
+adafruit-blinka>=8.0,<9

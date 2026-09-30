@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@source "./**/*.{js,jsx,ts,tsx}";
+
+@layer base {
+  :root {
+    --font-heading: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: #090d16;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 15% -10%, rgba(16, 185, 129, 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(6, 182, 212, 0.06), transparent);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+/* Custom Font Family Utilities */
+.font-heading {
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.font-body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Custom Glassmorphic Cards */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(22, 30, 48, 0.7) 0%, rgba(15, 23, 42, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+    0 12px 24px -14px rgba(0, 0, 0, 0.55);
+}
+
+.glass-card:hover {
+  border-color: rgba(148, 163, 184, 0.18);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
+    0 16px 32px -14px rgba(0, 0, 0, 0.6);
+}
+
+/* Glow Effects — kept subtle so accent colors read as status, not alarm */
+.glow-emerald {
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.18);
+}
+
+.glow-amber {
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.16);
+}
+
+.glow-red {
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.14);
+}
+
+.glow-blue {
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.18);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.18);
+}
+
+.glow-purple {
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.18);
+}
+
+/* Unified status banner system — replaces one-off red/amber alert boxes.
+   Calmer surface, colored left rail carries the meaning instead of a full-bleed fill. */
+.status-banner {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem 0.85rem 1.1rem;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.status-banner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  border-radius: 9999px;
+}
+
+.status-banner-critical::before {
+  background: #f87171;
+}
+
+.status-banner-warning::before {
+  background: #fbbf24;
+}
+
+.status-banner-info::before {
+  background: #38bdf8;
+}
+
+.status-banner-success::before {
+  background: #34d399;
+}
+
+/* Card accent rail — a slim top border indicating card health, subtler than a full glow */
+.card-rail-top {
+  position: relative;
+}
+
+.card-rail-top::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  border-radius: 9999px;
+  opacity: 0.7;
+}
+
+/* Fade-up entrance used for page content */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Scanner Animation */
+@keyframes scan-line {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-scan-line {
+  animation: scan-line 2.2s ease-in-out infinite;
+}

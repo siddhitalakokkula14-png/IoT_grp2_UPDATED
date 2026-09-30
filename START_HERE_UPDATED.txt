@@ -1,0 +1,47 @@
+SMART AGRICULTURE PROJECT - UPDATED MOTOR CONTROL
+
+IMPORTANT CHANGE
+----------------
+The motor/pump is controlled by the PHYSICAL HARDWARE SWITCH.
+The website motor switch shown on the Irrigation page is DISPLAY ONLY and is NOT clickable.
+
+WEBSITE ALERTS
+--------------
+1. Soil moisture below 45% -> website Threshold Alert.
+2. Water level below 40% -> website Threshold Alert.
+
+LAPTOP WEBSITE (NO RASPBERRY PI NEEDED TO START THE FRONTEND)
+---------------------------------------------------------------
+Open PowerShell in the folder that contains package.json.
+
+npm.cmd install
+npm.cmd run dev
+
+Then open the localhost URL shown by Vite, normally:
+http://localhost:5173/
+
+RASPBERRY PI / LIVE HARDWARE
+----------------------------
+When the Pi is available, run the backend from raspberry_pi/app.py and set the API URL in Settings.
+The website will then display the live motor/relay state and live sensor readings.
+
+HARDWARE MOTOR CONTROL
+----------------------
+Use the real physical switch/button connected to the motor/relay circuit.
+Do not expect the website's motor display to turn the motor on/off.
+
+ALERT ACTIONS
+-------------
+Soil < 45%: check/operate irrigation using the physical motor switch.
+Water < 40%: refill the water tank.
+
+
+IMPORTANT UPDATED MOTOR SETUP
+The motor/pump is disconnected from the software control path. Do not use website buttons or Raspberry Pi API commands to start/stop the motor. The motor is operated only with the physical push button/switch you are adding manually. The website is for soil-moisture and water-level monitoring and alerts only.
+
+
+SMS ALERTS
+----------
+Website and SMS use the same thresholds: soil <45%, water <40%.
+Twilio credentials stay on the Raspberry Pi backend. See raspberry_pi/.env.example and requirements.txt.
+Motor control remains external and is not controlled by the website or Raspberry Pi software.
